@@ -1,0 +1,160 @@
+---
+title: 'Exercise: Feature Selection and Hypothesis Generation'
+author: "JAS"
+date: " "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise: Feature selection using regularization methods
+
+In this exercise, you will utilize the caret package to optimize a regularization algorithm for feature selection. You will compare results when you include confounding variables as features entered into the algorithm.  You will also consider how study design and source of data can impact the conclusions drawn by a machine learning analysis. 
+
+***
+
+### Description of the Data
+
+The data are from an observational, hospital-based study of chronic kidney disease. You are approached by a clinician who has collected these data over the past 2 months in her clinic. These are cross-sectional data; when participants had appointments at the clinic, researchers collected biospecimen from participants, gave a brief questionnaire, and performed a medical exam. The clinician is interested in understanding which factors may contribute to the development of chronic kidney disease. All she provides you is the information about the dataset listed below. The features in the dataset are:
+
+      sex   - biological sex
+      age		-	age	
+			bp		-	blood pressure
+			sg		-	specific gravity
+			al		- albumin
+			su		-	sugar
+			rbc		-	red blood cells
+			pc		-	pus cell
+			pcc		-	pus cell clumps
+			ba		-	bacteria
+			bgr		-	blood glucose random
+			bu		-	blood urea
+			sc		-	serum creatinine
+			sod		-	sodium
+			pot		-	potassium
+			hemo		-	hemoglobin
+			pcv		-	packed cell volume
+			wc		-	white blood cell count
+			rc		-	red blood cell count
+			htn		-	hypertension
+			dm		-	diabetes mellitus
+			cad		-	coronary artery disease
+			appet		-	appetite
+			pe		-	pedal edema
+			ane		-	anemia
+			class		-	class	*Label: Indicates outcome of CKD
+
+You are provided with the following information from the clinician:
+
+1.Age(numerical)
+age in years
+2.Blood Pressure(numerical)
+bp in mm/Hg
+3.Specific Gravity(nominal)
+sg - (1.005,1.010,1.015,1.020,1.025)
+4.Albumin(nominal)
+al - (0,1,2,3,4,5)
+5.Sugar(nominal)
+su - (0,1,2,3,4,5)
+6.Red Blood Cells(nominal)
+rbc - (normal,abnormal)
+7.Pus Cell (nominal)
+pc - (normal,abnormal)
+8.Pus Cell clumps(nominal)
+pcc - (present,notpresent)
+9.Bacteria(nominal)
+ba - (present,notpresent)
+10.Blood Glucose Random(numerical)
+bgr in mgs/dl
+11.Blood Urea(numerical)
+bu in mgs/dl
+12.Serum Creatinine(numerical)
+sc in mgs/dl
+13.Sodium(numerical)
+sod in mEq/L
+14.Potassium(numerical)
+pot in mEq/L
+15.Hemoglobin(numerical)
+hemo in gms
+16.Packed Cell Volume(numerical)
+17.White Blood Cell Count(numerical)
+wc in cells/cumm
+18.Red Blood Cell Count(numerical)
+rc in millions/cmm
+19.Hypertension(nominal)
+htn - (yes,no)
+20.Diabetes Mellitus(nominal)
+dm - (yes,no)
+21.Coronary Artery Disease(nominal)
+cad - (yes,no)
+22.Appetite(nominal)
+appet - (good,poor)
+23.Pedal Edema(nominal)
+pe - (yes,no)
+24.Anemia(nominal)
+ane - (yes,no)
+25.Class (nominal)
+class - (ckd,notckd)
+
+Class 	  Number of instances
+    		ckd          	  250
+    		notckd       	  150   
+
+***
+
+###Before Data Analysis
+Question 1: What additional information, if any, would you want from the clinician in regards to the above features? 
+
+Question 2: Look at the features in the dataset before you start your analysis. Are there any you want to exclude from your analysis completely? Why or why not?
+
+
+### Step 1: Load Packages and Prepare Data
+You will need to clean the data, including removing '?' as missing indicators, ensuring that all variables are the correct type for the algorithm you want to use. Look through previous demonstrations and exercise solutions (you can also look at the documentation for the packages) for clues and code.
+
+```{r data_prep}
+library(caret)
+library(glmnet)
+library(dplyr)
+
+```
+
+### Step 2: Partition Data into Training and Test Sets
+
+Question 3: Is this part still necessary if our goal is variable selection and not building a prediction model to apply to new data? What do you think? 
+
+Regardless of your answer above, partition the data just to get the practice with the programming code.
+
+```{r partition}
+
+```
+
+### Step 3: Construct a model using a regularization algorithm and the features of interest in the training
+You decide which regularization algorithm you would like to use but justify your choice. Determine the appropriate evaluation metrics, given the data and outcome of interest. Assess how the metric(s) change(s) based on values of lambda, the hyperparameter. Construct a grid to explore various values of lambda (do not just use the default parameters). Once you have a final model, determine the features that are considered "important" based on the model output.
+
+ 
+```{r}
+
+```
+
+### Step 4: Construct another model, this time also including the confounding variables. 
+
+Redo the above, but now include the confounding variables as features.
+
+Question 4: Do the "important" features change when confounding variables are included? Do the hyperparameters that optimize the model change when the additional variables are included?
+
+```{r}
+
+```
+
+### Step 5: Examine your set of "important" variables in the testing data. 
+In the test set, construct an explanatory model to estimate the magnitude and precision of the effect of the features that were deemed important. 
+
+Question 5: Have you included the confounding variables in this model? Why or why not?
+
+```{r}
+
+```
+
+
